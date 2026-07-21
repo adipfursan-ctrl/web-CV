@@ -342,27 +342,59 @@
             border: 1px solid rgba(0, 242, 254, 0.1);
         }
 
-        .exp-item {
+        /* ===== EXPERIENCE & EDUCATION ITEMS ===== */
+        .exp-item, .edu-item {
             background: rgba(255, 255, 255, 0.04);
             border-radius: 16px;
             padding: 18px 20px;
             margin-bottom: 16px;
             border-left: 4px solid #00f2fe;
             transition: 0.4s;
+            cursor: pointer;
+            position: relative;
         }
 
-        .exp-item:hover {
+        .exp-item:hover, .edu-item:hover {
             background: rgba(255, 255, 255, 0.08);
-            transform: translateX(10px);
+            transform: translateX(10px) scale(1.02);
+            border-left-color: #ff6bcb;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .exp-item h3 {
+        .exp-item .location-hint, .edu-item .location-hint {
+            font-size: 0.6rem;
+            color: rgba(255, 255, 255, 0.2);
+            display: block;
+            margin-top: 8px;
+            transition: 0.3s;
+        }
+
+        .exp-item:hover .location-hint, .edu-item:hover .location-hint {
+            color: rgba(0, 242, 254, 0.5);
+        }
+
+        .exp-item .click-icon, .edu-item .click-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(0, 242, 254, 0.2);
+            transition: 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .exp-item:hover .click-icon, .edu-item:hover .click-icon {
+            color: rgba(0, 242, 254, 0.6);
+            transform: translateY(-50%) scale(1.2) rotate(-10deg);
+        }
+
+        .exp-item h3, .edu-item h3 {
             color: #fff;
             font-size: 1rem;
             font-weight: 600;
         }
 
-        .exp-item .meta {
+        .exp-item .meta, .edu-item .meta {
             color: #00f2fe;
             font-size: 0.8rem;
             margin: 4px 0 8px;
@@ -371,10 +403,28 @@
             flex-wrap: wrap;
         }
 
-        .exp-item p {
+        .exp-item p, .edu-item p {
             color: #bbb;
             font-size: 0.9rem;
             line-height: 1.6;
+        }
+
+        /* ===== ITEM TANPA LINK ===== */
+        .edu-item.no-link {
+            cursor: default;
+        }
+
+        .edu-item.no-link:hover {
+            transform: translateX(10px) scale(1.01);
+            border-left-color: #00f2fe;
+        }
+
+        .edu-item.no-link .click-icon {
+            display: none;
+        }
+
+        .edu-item.no-link .location-hint {
+            display: none;
         }
 
         @media (max-width: 768px) {
@@ -400,6 +450,9 @@
             }
             .modal-content {
                 padding: 25px;
+            }
+            .exp-item .click-icon, .edu-item .click-icon {
+                display: none;
             }
         }
     </style>
@@ -451,7 +504,7 @@
                         Saya adalah anak muda yang bersemangat dengan pengalaman membangun
                         aplikasi modern. Suka belajar hal baru dan menciptakan solusi kreatif.
                         Saat ini fokus di <strong style="color:#00f2fe;">Pengembangan WEB</strong> dan
-                        <strong style="color:#00f2fe;">Membangun hubungan dengan banyak orang</strong>.
+                        <strong style="color:#00f2fe;">Membangun Komunikasi dengan banyak orang</strong>.
                     </p>
                 </div>
 
@@ -510,24 +563,35 @@
 
                 <div class="section">
                     <h2><i class="fas fa-briefcase"></i> Pengalaman</h2>
-                    <div class="exp-item">
-                        <h3>Toko Bangunan Aulia</h3>
+                    
+                    <div class="exp-item" id="tokoAulia" onclick="window.open('https://www.google.com/maps/place/Toko+Bangunan+Aulia/@-2.669297,111.6450742,753m/data=!3m2!1e3!4b1!4m6!3m5!1s0x2e08ee137522953f:0x4813f26005a68d63!8m2!3d-2.669297!4d111.6450742!16s%2Fg%2F11fn7_3lzn?entry=ttu&g_ep=EgoyMDI2MDcyMC4wIKXMDSoASAFQAw%3D%3D', '_blank')">
+                        <h3><i class="fas fa-store" style="color:#00f2fe; margin-right:8px;"></i> Toko Bangunan Aulia</h3>
                         <div class="meta"><i class="fas fa-calendar-alt"></i> 2021 (selama 3 bulan)</div>
                         <p>Menjadi kasir dan sekaligus menjadi Diver Motor bagi pelanggan yang ingin barangnya di antar ke tujuan.</p>
+                        <span class="location-hint"><i class="fas fa-map-pin"></i> Klik untuk lihat lokasi di Google Maps</span>
+                        <span class="click-icon"><i class="fas fa-external-link-alt"></i></span>
                     </div>
                 </div>
 
                 <div class="section">
                     <h2><i class="fas fa-graduation-cap"></i> Pendidikan</h2>
-                    <div class="exp-item">
-                        <h3>Bisnis Digital</h3>
+                    
+                    <!-- ===== BISNIS DIGITAL - UMS DENGAN LINK MAPS ===== -->
+                    <div class="edu-item" onclick="window.open('https://www.google.com/maps/place/FEB+UMS/@-7.5564217,110.7677173,747m/data=!3m1!1e3!4m10!1m2!2m1!1sfeb+ums!3m6!1s0x2e7a145b68569ffb:0x4ac1fba02c911f5!8m2!3d-7.5566691!4d110.7698479!15sCgdmZWIgdW1zkgEVdW5pdmVyc2l0eV9kZXBhcnRtZW504AEA!16s%2Fg%2F1hm3c97d8?entry=ttu&g_ep=EgoyMDI2MDcyMC4wIKXMDSoASAFQAw%3D%3D', '_blank')">
+                        <h3><i class="fas fa-university" style="color:#00f2fe; margin-right:8px;"></i> Bisnis Digital</h3>
                         <div class="meta"><i class="fas fa-university"></i> Universitas Muhammadiyah Surakarta · 2024–2026</div>
                         <p>Masih menempuh Studi Semester 4.</p>
+                        <span class="location-hint"><i class="fas fa-map-pin"></i> Klik untuk lihat lokasi kampus di Google Maps</span>
+                        <span class="click-icon"><i class="fas fa-external-link-alt"></i></span>
                     </div>
-                    <div class="exp-item">
-                        <h3>Boarding School SMA Masa Depan</h3>
+
+                    <!-- ===== BOARDING SCHOOL SMA MASA DEPAN DENGAN LINK MAPS ===== -->
+                    <div class="edu-item" onclick="window.open('https://www.google.com/maps/place/SMA+Masa+Depan/@-7.7706121,110.442619,747m/data=!3m2!1e3!4b1!4m6!3m5!1s0x2e7a5bc95c69d19d:0xb46a89c37fb3add6!8m2!3d-7.7706121!4d110.4451939!16s%2Fg%2F11lgl45w4g?entry=ttu&g_ep=EgoyMDI2MDcyMC4wIKXMDSoASAFQAw%3D%3D', '_blank')">
+                        <h3><i class="fas fa-school" style="color:#00f2fe; margin-right:8px;"></i> Boarding School SMA Masa Depan</h3>
                         <div class="meta"><i class="fas fa-university"></i> SMA Masa Depan (Yogyakarta) · 2021–2024</div>
                         <p>Selama di pesantren, aktif mengikuti kegiatan harian (shalat berjamaah, tahfidz, dan kajian Fiqih) dan menjadi pengurus asrama santri putra.</p>
+                        <span class="location-hint"><i class="fas fa-map-pin"></i> Klik untuk lihat lokasi di Google Maps</span>
+                        <span class="click-icon"><i class="fas fa-external-link-alt"></i></span>
                     </div>
                 </div>
             </div>
@@ -576,7 +640,7 @@
                 title: 'Hafalan Al-Qur\'an (5 Juz)',
                 level: 'Low',
                 progress: 25,
-                description: 'Sedang dalam proses menghafal Al-Qur\'an. Saat ini telah mencapai 5 juz dan terus berusaha menambah hafalan dengan metode murojaah rutin.',
+                description: 'Sedang dalam proses menghafal Al-Qur\'an. Saat ini telah mencapai 5 juz(Bwlum mutqin) dan terus berusaha menambah hafalan dengan metode murojaah rutin.',
                 juzList: [
                     { number: 'Juz 30', surah: 'An-Naba — An-Nas' },
                     { number: 'Juz 29', surah: 'Al-Mulk — Al-Mursalat' },
@@ -584,7 +648,6 @@
                     { number: 'Juz 27', surah: 'Az-Zariyat — Al-Hadid' },
                     { number: 'Juz 26', surah: 'Al-Ahqaf — Az-Zariyat' }
                 ]
-                // BAGIAN DETAILS/KEMAMPUAN DIHAPUS
             },
             leadership: {
                 icon: 'fa-users-cog',
@@ -634,7 +697,6 @@
 
             let html = `<p>${data.description}</p>`;
 
-            // Juz List untuk Hafalan
             if (data.juzList) {
                 html += `
                     <div class="juz-box">
@@ -652,7 +714,6 @@
                 html += `</ul></div>`;
             }
 
-            // Details (KEMAMPUAN) - hanya ditampilkan jika ada
             if (data.details) {
                 html += `
                     <p class="section-title"><i class="fas fa-check-circle"></i> Kemampuan:</p>
@@ -699,6 +760,7 @@
         });
 
         console.log('✅ CV Interaktif siap! Klik skill untuk melihat detail.');
+        console.log('📍 Klik "Toko Bangunan Aulia", "Bisnis Digital", atau "Boarding School SMA Masa Depan" untuk membuka Google Maps.');
     </script>
 
 </body>
